@@ -48,11 +48,8 @@ testpaths = [
     "tests",
     "packages/*/tests",
 ]
-addopts = "--import-mode=importlib --strict-markers --strict-config -m 'not slow' -n auto"
+addopts = "--import-mode=importlib --strict-markers --strict-config -n auto"
 consider_namespace_packages = true
-markers = [
-    "slow: extended numerical, convergence and full-pipeline checks; explicit opt-in via manual CI or local runs",
-]
 filterwarnings = ["ignore:JAXopt is no longer maintained\\.:DeprecationWarning"]
 
 [tool.ruff]
