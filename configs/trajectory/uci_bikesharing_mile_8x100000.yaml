@@ -1,0 +1,44 @@
+name: uci_bikesharing_mile_8x100000
+group: trajectory
+seed: 28
+chains: 8
+data:
+  path: data/uci/bikesharing.data
+  task: mean_regression
+  normalize: true
+  train_split: 0.8
+  valid_split: 0.0
+  test_split: 0.2
+  split_seed: 28
+model:
+  name: FCN
+  hidden_structure:
+  - 16
+  - 16
+  - 16
+  - 1
+  activation: relu
+  use_bias: true
+prior:
+  name: StandardNormal
+fit:
+  name: mode
+  optimizer:
+    name: adam
+    parameters: {}
+    schedule: cosine_decay
+    schedule_parameters:
+      init_value: 0.01
+      decay_steps: 50000
+  steps: 50000
+sampler:
+  name: mclmc
+  warmup: 10000
+  steps: 100000
+  thinning: 1
+  desired_energy_var_start: 0.0005
+  desired_energy_var_end: 5.0e-06
+  diagonal_preconditioning: false
+  trust_in_estimate: 1.5
+  num_effective_samples: 100
+  step_size_init: 0.01

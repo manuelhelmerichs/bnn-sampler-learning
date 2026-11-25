@@ -1,0 +1,65 @@
+[project]
+name = "experiments"
+version = "0.1.0"
+description = "Experiments on which sampler components are worth learning, one folder each"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "bnn",
+    "runner",
+    "jax==0.10.2",
+    "flax==0.12.7",
+    "optax==0.2.8",
+    "blackjax==1.2.2",
+    "numpy==2.5.1",
+    "scipy==1.18.0",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "experiments"
+module-root = ""
+
+[tool.uv]
+# fastprogress >= 1.1 (transitive via blackjax) pulls in a web-app stack.
+constraint-dependencies = ["fastprogress==1.0.3"]
+
+[tool.uv.workspace]
+members = ["packages/*"]
+exclude = ["**/.DS_Store", "**/__init__.py"]
+
+[tool.uv.sources]
+bnn = { workspace = true }
+runner = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest==9.1.1",
+    "ruff==0.15.21",
+    "coverage==7.15.0",
+    "pre-commit==4.6.0",
+    "pytest-xdist==3.8.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+    "packages/*/tests",
+]
+addopts = "--import-mode=importlib --strict-markers --strict-config -m 'not slow' -n auto"
+consider_namespace_packages = true
+markers = [
+    "slow: extended numerical, convergence and full-pipeline checks; explicit opt-in via manual CI or local runs",
+]
+filterwarnings = ["ignore:JAXopt is no longer maintained\\.:DeprecationWarning"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+force-exclude = true
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["E501"]

@@ -1,0 +1,10 @@
+default_install_hook_types: [pre-commit]
+exclude: '^README\.md$|^(runs|results)/\.gitkeep$'
+repos:
+  # Pinned to the ruff of the root `dev` group, so the hook and `uv run ruff` agree.
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.21
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format

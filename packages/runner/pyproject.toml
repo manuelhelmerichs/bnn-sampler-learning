@@ -1,0 +1,20 @@
+[project]
+name = "runner"
+version = "0.1.0"
+description = "Runs the experiments of the repository and keeps their results"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "bnn",
+    "jax==0.10.2",
+    "numpy==2.5.1",
+]
+
+[tool.uv.sources]
+bnn = { workspace = true }
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""

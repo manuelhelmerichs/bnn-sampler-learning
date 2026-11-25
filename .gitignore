@@ -1,0 +1,24 @@
+# Local environments, generated caches and build output
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.cache/
+*.egg-info/
+.coverage*
+htmlcov/
+build/
+dist/
+.DS_Store
+
+# Prepared datasets and scientific runs are explicit generated artifacts.
+/data/*
+!/data/uci/
+!/data/README.md
+/runs/*
+!/runs/.gitkeep
+/results/*
+!/results/.gitkeep
+/experiments/*/tests/
