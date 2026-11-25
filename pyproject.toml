@@ -1,7 +1,7 @@
 [project]
 name = "experiments"
 version = "0.1.0"
-description = "Experiments on which sampler components are worth learning, one folder each"
+description = "Experiments on which sampler components are worth learning"
 requires-python = ">=3.13,<3.14"
 dependencies = [
     "bnn",
@@ -42,15 +42,6 @@ dev = [
     "pre-commit==4.6.0",
     "pytest-xdist==3.8.0",
 ]
-
-[tool.pytest.ini_options]
-testpaths = [
-    "tests",
-    "packages/*/tests",
-]
-addopts = "--import-mode=importlib --strict-markers --strict-config -n auto"
-consider_namespace_packages = true
-filterwarnings = ["ignore:JAXopt is no longer maintained\\.:DeprecationWarning"]
 
 [tool.ruff]
 line-length = 88
